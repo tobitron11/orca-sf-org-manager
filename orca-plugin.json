@@ -1,0 +1,52 @@
+{
+  "manifestVersion": 2,
+  "id": "sf-org-manager",
+  "name": "Salesforce Org Manager",
+  "version": "0.1.0",
+  "description": "Shows which Salesforce org each project targets and manages your authenticated orgs.",
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.ts",
+  "contributes": {
+    "panels": [
+      {
+        "id": "sf-org-manager",
+        "title": "Salesforce Org Manager",
+        "icon": "cloud",
+        "entry": "src/panel.tsx",
+        "ui": "components"
+      }
+    ],
+    "commands": [
+      {
+        "id": "sf-org.open",
+        "title": "Salesforce Orgs: Toggle Panel",
+        "action": "sidebar.right.toggle"
+      }
+    ],
+    "statusBarItems": [
+      {
+        "id": "sf-org",
+        "text": "SF: …",
+        "icon": "cloud",
+        "command": "sf-org.open"
+      }
+    ],
+    "events": [
+      {
+        "on": "workspace.changed"
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "kind": "storage:own"
+    },
+    {
+      "kind": "workspace:read"
+    }
+  ]
+}
